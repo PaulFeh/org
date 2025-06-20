@@ -63,8 +63,9 @@ query = injectQuery(() => ({
 isValidName(name: string): boolean {
   if (!name) return false;
 
+  const nameRegex = /^[A-Za-z\s]{2,30}$/;
   // Allow letters, spaces, and **only one number**
-  const nameRegex = /^(?=(?:.*\d){0,1})[A-Za-z\d\s]{2,30}$/;
+  //const nameRegex = /^(?=(?:.*\d){0,1})[A-Za-z\d\s]{2,30}$/;
   return nameRegex.test(name.trim());
 }
 
