@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+/* Tailwind layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define Angular Material theme */
+$theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  )
+));
+
+@include mat.core();
+@include mat.color-variants-backwards-compatibility($theme);
+
+/* Your CSS custom properties theme block */
+:root {
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --color-primary: #1d4ed8;
+  --color-secondary: #9333ea;
+  --color-accent: #f59e0b;
+  --color-muted: #6b7280;
+
+  --spacing: 1rem;
+  --spacing-sm: 0.5rem;
+  --spacing-lg: 2rem;
+
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-sm: 0.875rem;
+
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  --transition: all 0.2s ease-in-out;
+}
+
+/* Apply Material theme */
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 30px;
+  height: 100%;
+  @include mat.all-component-themes($theme);
+}
+
+html {
+  height: 100%;
+}

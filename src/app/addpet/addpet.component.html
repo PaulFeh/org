@@ -1,0 +1,17 @@
+<div class="add-pet-container" style="background: linear-gradient(135deg, #f0e7ff 0%, #e0f7fa 100%);">
+  <h2 class="add-pet-title">
+    Add a New Pet
+  </h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="add-pet-form">
+    <formly-form [form]="form" [model]="model" [fields]="fields"></formly-form>
+    <div class="form-actions">
+      <button type="submit" [disabled]="!form.valid">Submit</button>
+    </div>
+  </form>
+
+  <div class="preview-section">
+    <h3>Preview</h3>
+    <pre>{{ model | json }}</pre>
+  </div>
+</div>

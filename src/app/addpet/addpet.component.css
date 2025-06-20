@@ -1,0 +1,89 @@
+.add-pet-container {
+  max-width: 640px;
+  margin: 2.5rem auto;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.add-pet-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #1d4ed8;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.add-pet-title .material-icons {
+  font-size: 2rem;
+  vertical-align: middle;
+}
+
+.add-pet-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+button[type="submit"] {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button[type="submit"]:hover {
+  background-color: #1e40af;
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button[type="button"] {
+  background-color: transparent;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+button[type="button"]:hover {
+  background-color: #eff6ff;
+}
+
+.preview-section {
+  margin-top: 2rem;
+}
+
+.preview-section h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.preview-section pre {
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  overflow-x: auto;
+  font-family: monospace;
+}
