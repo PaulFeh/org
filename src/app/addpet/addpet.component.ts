@@ -13,6 +13,7 @@ import {
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addpet',
@@ -26,6 +27,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AddpetComponent {
 petService = inject(PetService);
+router = inject(Router);
  query = injectQuery(() => ({
    queryKey: ['pets'],
    queryFn: () =>
@@ -128,6 +130,7 @@ fields: FormlyFieldConfig[] = [
    this.model.id = Date.now();
    alert(JSON.stringify(this.model));
    this.mutation.mutate(this.model);
+   this.router.navigate(['/']);
  }
 
 
