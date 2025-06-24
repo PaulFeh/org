@@ -44,18 +44,10 @@ petService = inject(PetService);
  model: any = {};
  fields: FormlyFieldConfig[] = [
    {
-     key: 'id',
-     type: 'number',
-     props: {
-       label: 'ID',
-       placeholder: 'Enter id',
-     },
-   },
-   {
      key: 'name',
      type: 'input',
      props: {
-       label: 'Name!',
+       label: 'Name',
        placeholder: 'Enter name',
      },
    },
@@ -73,20 +65,6 @@ petService = inject(PetService);
          { value: { id: 5, name: 'Fish' }, label: 'Fish' },
          { value: { id: 6, name: 'Reptiles' }, label: 'Reptiles' },
        ],
-     },
-   },
-   {
-     key: 'photoUrls',
-     type: 'repeat',
-     props: {
-       addText: 'Add Photo',
-       placeholder: 'Type here to see the other field become enabled...',
-     },
-     fieldArray: {
-       type: 'input',
-       props: {
-         placeholder: 'url',
-       },
      },
    },
    {
@@ -116,9 +94,24 @@ petService = inject(PetService);
        ],
      },
    },
+   {
+     key: 'photoUrls',
+     type: 'repeat',
+     props: {
+       addText: 'Add Photo',
+       placeholder: 'Type here to see the other field become enabled...',
+     },
+     fieldArray: {
+       type: 'input',
+       props: {
+         placeholder: 'url',
+       },
+     },
+   },
  ];
 
  submit() {
+   this.model.id = Date.now();
    alert(JSON.stringify(this.model));
    this.mutation.mutate(this.model);
  }
