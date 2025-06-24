@@ -45,6 +45,14 @@ button[type="submit"] {
   transition: background-color 0.2s ease-in-out;
 }
 
+.formly-field-repeat {
+  margin-top: 5rem;
+}
+
+.formly-field-repeat .formly-field {
+  margin-top: 1rem;
+}
+
 button[type="submit"]:hover {
   background-color: #1e40af;
 }
