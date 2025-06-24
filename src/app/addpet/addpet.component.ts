@@ -28,14 +28,7 @@ import { Router } from '@angular/router';
 export class AddpetComponent {
 petService = inject(PetService);
 router = inject(Router);
- query = injectQuery(() => ({
-   queryKey: ['pets'],
-   queryFn: () =>
-     lastValueFrom(
-       this.petService.findPetsByStatus$Json({ status: 'available' }),
-     ),
- }));
- mutation = injectMutation(() => ({
+mutation = injectMutation(() => ({
    mutationFn: (pet: any) =>
      lastValueFrom(this.petService.addPet$Json$Json$Response({ body: pet })),
    onSuccess: () => {
@@ -77,14 +70,14 @@ fields: FormlyFieldConfig[] = [
     key: 'tags',
     type: 'select',
     props: {
-      label: 'Tags',
-      placeholder: 'Select tags',
+      label: 'Personality',
+      placeholder: 'Select Personality',
       multiple: true,
       appearance: 'outline',
       floatLabel: 'always',
       options: [
-        { value: { id: 1, name: 'tag1' }, label: '1' },
-        { value: { id: 2, name: 'tag2' }, label: '2' },
+        { value: { id: 1, name: 'Happy' }, label: 'Happy' },
+        { value: { id: 2, name: 'Sleepy' }, label: 'Sleepy' },
       ],
     },
   },
@@ -104,34 +97,47 @@ fields: FormlyFieldConfig[] = [
       ],
     },
   },
-  {
-    key: 'photoUrls',
-    type: 'repeat',
-    props: {
-      addText: 'Add Photo',
-      placeholder: 'Add a photo URL',
-      appearance: 'outline',
-      floatLabel: 'always',
-    },
-    fieldArray: {
-      type: 'input',
-      props: {
-        placeholder: 'url',
-        label: 'Photo URL',
-        appearance: 'outline',
-        floatLabel: 'always',
-        className: 'mt-4',
-      },
-    },
-  },
+  // {
+  //   key: 'photoUrls',
+  //   type: 'repeat',
+  //   props: {
+  //     addText: 'Add Photo',
+  //     placeholder: 'Add a photo URL',
+  //     appearance: 'outline',
+  //     floatLabel: 'always',
+  //   },
+  //   fieldArray: {
+  //     type: 'input',
+  //     props: {
+  //       placeholder: 'url',
+  //       label: 'Photo URL',
+  //       appearance: 'outline',
+  //       floatLabel: 'always',
+  //       className: 'mt-4',
+  //     },
+  //   },
+  // },
 ];
 
  submit() {
-   this.model.id = Date.now();
-   alert(JSON.stringify(this.model));
-   this.mutation.mutate(this.model);
-   this.router.navigate(['/']);
- }
+  this.model.id = Date.now();
+  this.tryAddPet(this.model, 3);
+}
 
+private async tryAddPet(pet: any, attempts: number) {
+  for (let i = 0; i < attempts; i++) {
+    try {
+      await lastValueFrom(this.petService.addPet$Json$Json$Response({ body: pet }));
+      this.router.navigate(['/']);
+      return;
+    } catch (e) {
+      if (i < attempts - 1) {
+        await new Promise(res => setTimeout(res, 300));
+      } else {
+        alert('Failed to add pet after multiple attempts.');
+      }
+    }
+  }
+}
 
 }

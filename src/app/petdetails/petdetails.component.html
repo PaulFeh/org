@@ -26,7 +26,7 @@
               {{ pet.status || 'N/A' }}
             </p>
             <p>
-              <span class="font-medium text-blue-700">Tags:</span>
+              <span class="font-medium text-blue-700">Personality:</span>
               <ng-container *ngIf="pet.tags?.length; else noTags">
                 <span *ngFor="let tag of pet.tags; let last = last">
                   {{ tag.name }}<span *ngIf="!last">, </span>
