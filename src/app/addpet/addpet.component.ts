@@ -86,15 +86,16 @@ fields: FormlyFieldConfig[] = [
     type: 'select',
     props: {
       label: 'Status',
-      placeholder: 'Select',
+      placeholder: 'Available',
       required: true,
       appearance: 'outline',
       floatLabel: 'always',
+      disabled: true,
       options: [
         { value: 'available', label: 'Available' },
-        { value: 'pending', label: 'Pending' },
-        { value: 'sold', label: 'Sold' },
+
       ],
+      defaultValue: 'available',
     },
   },
   // {

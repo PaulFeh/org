@@ -1,24 +1,23 @@
 <!-- Header -->
- <header class="mb-12 border-b pb-4">
-  <div class="max-w-7xl mx-auto flex items-center gap-8 px-4">
-    <div class="logo-title flex items-center gap-2">
-      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Petstore Logo" class="w-10 h-10" />
-      <h1 class="text-xl font-bold text-blue-700">Paul's Petstore!</h1>
+<header class="site-header">
+  <div class="header-container">
+    <div class="logo-title">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
+        alt="Petstore Logo"
+      />
+      <h1>Paul's Petstore!</h1>
     </div>
-    <nav class="flex gap-4 items-center ml-auto">
-      <a routerLink="/" class="text-blue-600 hover:text-blue-800 hover:underline transition">Home</a>
-      <a routerLink="/add-pet" class="text-blue-600 hover:text-blue-800 hover:underline transition">Add Pet</a>
+    <nav>
+      <a routerLink="/">Home</a>
+      <a routerLink="/add-pet">Add Pet</a>
 
       <ng-container *ngIf="!isLoggedIn(); else logoutLinks">
-        <a routerLink="/login" class="text-blue-600 hover:text-blue-800 hover:underline transition">Login</a>
-       <!--  <a routerLink="/signup" class="text-blue-600 hover:text-blue-800 hover:underline transition">Signup</a> -->
+        <a routerLink="/login">Login</a>
       </ng-container>
 
       <ng-template #logoutLinks>
-        <button (click)="logout()" class="logout-button">
-  Logout
-</button>
-
+        <button (click)="logout()" class="logout-button">Logout</button>
       </ng-template>
     </nav>
   </div>

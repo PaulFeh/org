@@ -1,22 +1,22 @@
 /* Pet Details Container */
 .pet-details-container {
   max-width: 48rem; /* max-w-3xl */
-  margin: 4rem auto; /* more vertical centering */
+  margin: 4rem auto;
   background-color: #ffffff;
   border-radius: 1rem; /* rounded-2xl */
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   padding: 2.5rem;
-  border: 1px solid #dbeafe; /* border-blue-100 */
+  border: 1px solid #dbeafe;
   display: flex;
   flex-direction: column;
-  align-items: center; /* center inner content */
+  align-items: center;
 }
 
 /* Title */
 .pet-details-container h2 {
   font-size: 1.875rem; /* text-3xl */
   font-weight: 800;
-  color: #1d4ed8; /* text-blue-700 */
+  color: #1d4ed8;
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
@@ -28,15 +28,16 @@
 .pet-info {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  width: 100%;
   align-items: center;
+  gap: 2rem;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
   .pet-info {
     flex-direction: row;
     align-items: flex-start;
+    gap: 3rem;
   }
 }
 
@@ -45,9 +46,17 @@
   width: 20rem;
   height: 20rem;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   object-fit: cover;
   border: 1px solid #bfdbfe; /* border-blue-200 */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px) {
+  .pet-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
 }
 
 /* Pet Info Text */
@@ -55,46 +64,54 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  color: #374151; /* text-gray-700 */
+  color: #374151;
   font-size: 1rem;
+  text-align: center;
 }
 
 .pet-info-text h3 {
   font-size: 1.5rem; /* text-2xl */
   font-weight: 600;
-  color: #1f2937; /* text-gray-800 */
+  color: #1f2937;
 }
 
 .pet-info-text span {
   font-weight: 500;
-  color: #1d4ed8; /* blue label */
+  color: #1d4ed8;
 }
 
 .pet-info-text .tags {
-  color: #111827; /* black text for tags */
+  color: #111827;
   font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .pet-info-text {
+    text-align: left;
+  }
 }
 
 /* Adopt Button */
 .adopt-button {
-  background-color: #2563eb; /* bg-blue-600 */
-  align-self: center;
+  background-color: #2563eb;
   color: white;
   padding: 0.75rem 2rem;
-  font-size: 1rem;
-  border-radius: 9999px; /* rounded-full */
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 9999px; /* fully rounded */
   border: none;
   cursor: pointer;
+  margin-top: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
-  margin-top: 2rem;
+  align-self: center;
 }
 
 .adopt-button:hover {
-  background-color: #1e40af; /* hover:bg-blue-700 */
+  background-color: #1e40af;
 }
 
-/* Not Found Template */
+/* Not Found */
 .pet-not-found {
   text-align: center;
   padding: 4rem 0;
@@ -102,8 +119,8 @@
 }
 
 .pet-not-found .material-icons {
-  font-size: 3.75rem; /* text-6xl */
-  color: #d1d5db; /* text-gray-300 */
+  font-size: 3.75rem;
+  color: #d1d5db;
   margin-bottom: 1rem;
 }
 
@@ -128,4 +145,102 @@
 
 .pet-not-found a:hover {
   text-decoration: underline;
+}
+
+/* General Responsive Container Utilities */
+.max-w-3xl {
+  max-width: 48rem;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.bg-white {
+  background: #fff;
+}
+.rounded-2xl {
+  border-radius: 1.25rem;
+}
+.shadow-xl {
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+.p-10 {
+  padding: 2.5rem;
+}
+.mt-12 {
+  margin-top: 3rem;
+}
+.border {
+  border-width: 1px;
+}
+.border-blue-100 {
+  border-color: #c7d2fe;
+}
+
+/* Section margin */
+section.mt-10 {
+  margin-top: 2.5rem;
+}
+
+/* Text Utility */
+.text-gray-600 {
+  color: #4b5563;
+}
+.text-gray-700 {
+  color: #374151;
+}
+.text-gray-800 {
+  color: #1f2937;
+}
+.text-blue-700 {
+  color: #1d4ed8;
+}
+.text-gray-500 {
+  color: #6b7280;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.font-bold {
+  font-weight: 700;
+}
+.text-2xl {
+  font-size: 1.5rem;
+}
+.text-3xl {
+  font-size: 1.875rem;
+}
+.text-xl {
+  font-size: 1.25rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+/* Mobile padding adjustments */
+@media (max-width: 600px) {
+  .p-10 {
+    padding: 1rem;
+  }
+  .mt-12 {
+    margin-top: 1.5rem;
+  }
+  .pet-info-text h3 {
+    font-size: 1.25rem;
+  }
 }
