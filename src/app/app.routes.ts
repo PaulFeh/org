@@ -5,14 +5,22 @@ import { ProfileComponent } from './profile/profile.component';
 import { PetstoreComponent } from './Petstore/Petstore.component';
 import { AddpetComponent } from './addpet/addpet.component';
 import { PetdetailsComponent } from './petdetails/petdetails.component';
-import { AuthGuardService } from './auth-guard.service';
+import { AuthGuardService } from './auth-guard/auth-guard.service';
 
 export const routes: Routes = [
   { path: '', component: PetstoreComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
-  { path: 'add-pet', component: AddpetComponent, canActivate: [AuthGuardService] },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'add-pet',
+    component: AddpetComponent,
+    canActivate: [AuthGuardService],
+  },
   { path: 'pet/:id', component: PetdetailsComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];

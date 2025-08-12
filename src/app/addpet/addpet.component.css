@@ -1,97 +1,115 @@
-.add-pet-container {
-  max-width: 640px;
-  margin: 2.5rem auto;
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+/* Force black text for all form fields and labels */
+::ng-deep .mat-mdc-form-field-label,
+::ng-deep .mat-mdc-form-field .mat-mdc-floating-label,
+::ng-deep .mat-mdc-input-element,
+::ng-deep .mat-mdc-select-value,
+::ng-deep .mat-mdc-select-value-text,
+::ng-deep .mat-mdc-form-field-input-control,
+::ng-deep .mat-form-field-label,
+::ng-deep .mat-input-element,
+::ng-deep .mat-select-value {
+  color: #222 !important;
 }
 
-.add-pet-title {
-  font-size: 1.75rem;
-  font-weight: bold;
-  color: #1d4ed8;
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+/* White background for input fields */
+::ng-deep .mat-mdc-text-field-wrapper,
+::ng-deep .mat-mdc-form-field-flex,
+::ng-deep .mat-input-element,
+::ng-deep .mat-form-field-flex {
+  background: #fff !important;
 }
 
-.add-pet-title .material-icons {
-  font-size: 2rem;
-  vertical-align: middle;
+/* White dropdown panel with proper styling */
+::ng-deep .mat-mdc-select-panel,
+::ng-deep .mat-select-panel {
+  background: #fff !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 0.5rem !important;
 }
 
-.add-pet-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+/* Black text for dropdown options */
+::ng-deep .mat-mdc-option,
+::ng-deep .mat-option {
+  color: #222 !important;
+  background: #fff !important;
 }
 
-.form-actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
+/* Hover state for options */
+::ng-deep .mat-mdc-option:hover,
+::ng-deep .mat-option:hover {
+  background: #f5f5f5 !important;
 }
 
-button[type="submit"] {
-  background-color: #2563eb;
-  color: white;
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+/* Selected option styling */
+::ng-deep .mat-mdc-option.mat-mdc-option-selected,
+::ng-deep .mat-option.mat-selected {
+  background: #e3f2fd !important;
+  color: #222 !important;
 }
 
-.formly-field-repeat {
-  margin-top: 5rem;
+/* Ensure placeholder text is visible */
+::ng-deep .mat-mdc-form-field-placeholder,
+::ng-deep .mat-form-field-placeholder {
+  color: #666 !important;
 }
 
-.formly-field-repeat .formly-field {
-  margin-top: 1rem;
+/* Fix for multiple select chips if using tags field */
+::ng-deep .mat-mdc-chip,
+::ng-deep .mat-chip {
+  color: #222 !important;
+  background: #f0f0f0 !important;
 }
 
-button[type="submit"]:hover {
-  background-color: #1e40af;
+/* Disabled field styling - grayed out appearance */
+::ng-deep .mat-mdc-form-field.mat-form-field-disabled,
+::ng-deep .mat-form-field-disabled {
+  opacity: 0.6 !important;
 }
 
-button[type="submit"]:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+::ng-deep .mat-mdc-form-field.mat-form-field-disabled .mat-mdc-input-element,
+::ng-deep .mat-mdc-form-field.mat-form-field-disabled .mat-mdc-select-value,
+::ng-deep .mat-mdc-form-field.mat-form-field-disabled .mat-mdc-floating-label,
+::ng-deep .mat-form-field-disabled .mat-input-element,
+::ng-deep .mat-form-field-disabled .mat-select-value,
+::ng-deep .mat-form-field-disabled .mat-form-field-label {
+  color: #999 !important;
+  cursor: not-allowed !important;
 }
 
-button[type="button"] {
-  background-color: transparent;
-  color: #2563eb;
-  border: 2px solid #2563eb;
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.15s ease;
+::ng-deep
+  .mat-mdc-form-field.mat-form-field-disabled
+  .mat-mdc-text-field-wrapper,
+::ng-deep .mat-form-field-disabled .mat-form-field-flex {
+  background: #f5f5f5 !important;
 }
 
-button[type="button"]:hover {
-  background-color: #eff6ff;
+/* Disabled select dropdown arrow */
+::ng-deep .mat-mdc-form-field.mat-form-field-disabled .mat-mdc-select-arrow,
+::ng-deep .mat-form-field-disabled .mat-select-arrow {
+  color: #ccc !important;
 }
 
-.preview-section {
-  margin-top: 2rem;
+/* Additional Material Design 3 (MDC) specific selectors */
+::ng-deep .mdc-text-field--filled .mdc-text-field__input,
+::ng-deep .mdc-text-field--outlined .mdc-text-field__input {
+  color: #222 !important;
 }
 
-.preview-section h3 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+::ng-deep .mdc-floating-label {
+  color: #666 !important;
 }
 
-.preview-section pre {
-  background-color: #f3f4f6;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  font-size: 0.9rem;
-  overflow-x: auto;
-  font-family: monospace;
+::ng-deep .mdc-floating-label--float-above {
+  color: #666 !important;
+}
+
+/* Disabled MDC text field */
+::ng-deep .mdc-text-field--disabled .mdc-text-field__input {
+  color: #999 !important;
+  cursor: not-allowed !important;
+}
+
+::ng-deep .mdc-text-field--disabled {
+  background-color: #f5f5f5 !important;
+  opacity: 1 !important;
 }

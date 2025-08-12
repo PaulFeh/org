@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuardService implements CanActivate {
-
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
   canActivate(): boolean {
     if (this.isLoggedIn()) {
       return true;
@@ -20,5 +18,10 @@ export class AuthGuardService implements CanActivate {
   isLoggedIn(): boolean {
     const token = localStorage.getItem('authToken');
     return !!token;
+  }
+
+  isCreator(): boolean {
+    const role = localStorage.getItem('userRole');
+    return role === 'creator';
   }
 }

@@ -1,36 +1,59 @@
-<div class="tailwind-test bg-red-500 text-white text-center p-4 my-8 rounded">
-  If you see a big red box, Tailwind is working!
-</div>
 <div
   class="petstore-home min-h-screen px-4 py-8"
   style="background: linear-gradient(135deg, #f0e7ff 0%, #e0f7fa 100%)"
 >
   <!-- Featured Pets -->
   <section class="mb-16">
-    <h2 class="text-3xl font-semibold text-gray-800 mb-6">Available Pets</h2>
-    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+    <div
+      class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6"
+    >
+      <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800">Pets</h2>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+        <label for="status-select" class="font-medium text-gray-700"
+          >Status:</label
+        >
+        <select
+          id="status-select"
+          #statusSelect
+          class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white text-gray-900 w-full sm:w-auto"
+          [value]="selectedStatus"
+          (change)="onStatusChange(statusSelect.value)"
+        >
+          <option *ngFor="let option of statusOptions" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       <li
         *ngFor="let pet of query.data(); let i = index; trackBy: trackByPetName"
-        class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition"
+        class="bg-white rounded-xl shadow-md p-4 text-center hover:shadow-lg transition"
       >
         <a [routerLink]="['/pet', pet.id]" class="flex flex-col items-center">
           <img
-            [src]="'https://place-puppy.com/puppy/y:100/x:' + (100 + i)"
+            [ngSrc]="'https://place-puppy.com/puppy/y:100/x:' + (100 + i)"
             [alt]="pet.name"
-            class="w-10 h-10 object-cover rounded-full shadow mb-4"
+            fetchpriority="high"
+            width="160"
+            height="160"
+            class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-xl shadow mb-3"
           />
-          <span class="font-bold text-lg text-gray-900">{{ pet.name }}</span>
+          <span class="font-bold text-base sm:text-lg text-gray-900">{{
+            pet.name
+          }}</span>
         </a>
       </li>
     </ul>
   </section>
 
   <!-- Why Choose -->
-  <section class="text-center">
-    <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">
+  <section class="text-center px-4 sm:px-8">
+    <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
       Why Choose Petstore?
     </h2>
-    <ul class="list-disc pl-6 text-gray-700 space-y-2">
+    <ul class="text-sm sm:text-base text-gray-700 space-y-2 list-inside">
       <li>Wide variety of pets available for adoption</li>
       <li>Trusted by thousands of happy families</li>
       <li>Easy and secure adoption process</li>
@@ -39,9 +62,11 @@
   </section>
 
   <!-- Call to Action -->
-  <section class="text-center">
-    <h2 class="text-2xl font-semibold text-gray-800 mb-3">Get Started</h2>
-    <p class="mb-6 text-gray-600">
+  <section class="text-center px-4 sm:px-8">
+    <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mt-8 mb-3">
+      Get Started
+    </h2>
+    <p class="text-sm sm:text-base mb-6 text-gray-600">
       Browse our pets and find your new best friend today!
     </p>
   </section>

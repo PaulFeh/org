@@ -1,9 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PetService } from '../../api/services/pet.service';
 import { StoreService } from '../../api/services/store.service';
-import { lastValueFrom, delay, retry } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { lastValueFrom } from 'rxjs';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { injectQuery } from '@tanstack/angular-query-experimental';
+import { AdoptionService } from 'src/api/services/adoption.service';
 
 interface Category {
   id?: number;
@@ -23,41 +25,33 @@ export interface Pet {
   tags?: Tag[];
   status?: string;
 }
+
 @Component({
   selector: 'app-petdetails',
   templateUrl: './petdetails.component.html',
   styleUrl: './petdetails.component.css',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NgOptimizedImage],
 })
 export class PetdetailsComponent {
   route = inject(ActivatedRoute);
   petService = inject(PetService);
   storeService = inject(StoreService);
-  public pet?: Pet;
+  router = inject(Router);
+  adoptionService = inject(AdoptionService);
 
-  constructor() {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.tryFetchPet(+id, 3);
-    }
-  }
+  petId = +(this.route.snapshot.paramMap.get('id') ?? 0);
 
-  private async tryFetchPet(petId: number, attempts: number) {
-    for (let i = 0; i < attempts; i++) {
-      try {
-        this.pet = await lastValueFrom(
-          this.petService.getPetById$Json({ petId })
-        );
-        return;
-      } catch (e) {
-        if (i < attempts - 1) {
-          await new Promise((res) => setTimeout(res, 300));
-        } else {
-          this.pet = undefined;
-        }
-      }
-    }
+  petQuery = injectQuery(() => ({
+    queryKey: ['pet', this.petId],
+    queryFn: () =>
+      lastValueFrom(this.petService.getPetById$Json({ petId: this.petId })),
+    retry: 3,
+    enabled: !!this.petId,
+  }));
+
+  get pet(): Pet | undefined {
+    return this.petQuery.data();
   }
 
   adoptPet() {
@@ -72,30 +66,33 @@ export class PetdetailsComponent {
         complete: true,
       };
 
-      this.storeService
-        .placeOrder$Json({
-          body: order,
-        })
-        .subscribe({
-          next: () => console.log('Order placed successfully'),
-          error: (err) => console.error('Failed to place order', err),
-        });
-      localStorage.setItem('adoptedPet', JSON.stringify(this.pet));
-      this.pet = undefined; // Clear pet after adoption
+      this.storeService.placeOrder$Json({ body: order }).subscribe({
+        next: () => {
+          console.log('Order placed successfully');
+
+          this.adoptionService.addPet({
+            id: this.pet?.id ?? 0,
+            name: this.pet?.name ?? '',
+          });
+
+          this.router.navigate(['/']);
+        },
+        error: (err) => console.error('Failed to place order', err),
+      });
     }
   }
 
   fakeDescriptions: string[] = [
-    'Loves belly rubs and long naps in the sun.',
-    'A ball-chasing champion with a big heart.',
-    'Shy at first, but becomes your shadow once bonded.',
-    'Great with kids and loves squeaky toys.',
-    'A curious explorer with a nose for snacks.',
-    'Enjoys playing fetch and stealing socks.',
-    'Always ready for an adventure or a cuddle session.',
-    'Loyal, gentle, and looking for a forever home.',
-    'A goofy goober who will keep you laughing.',
-    'Loves walks, but loves treats even more.',
+    'Loves belly rubs, sunny window naps, and curling up beside you during movie nights.',
+    'A ball-chasing champion with a giant heart who will greet you with wagging tail every day.',
+    'Shy at first, but once bonded, becomes your loyal shadow and constant cuddle buddy.',
+    'Perfect with kids, adores squeaky toys, and never says no to a backyard game of tag.',
+    'A curious explorer with a nose for snacks, always on the lookout for hidden treats.',
+    'Enjoys marathon fetch sessions, sneaking away with your socks, and silly zoomies indoors.',
+    'Always ready for a spontaneous adventure or a cozy nap curled up on your lap.',
+    'Loyal, gentle, endlessly patient, and dreaming of a warm and loving forever home.',
+    'A goofy goober whose playful antics and zoomies will keep you laughing all day long.',
+    'Loves long walks through the park but loves belly scratches and tasty treats even more.',
   ];
 
   getRandomDescription(): string {

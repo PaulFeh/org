@@ -1,23 +1,37 @@
 <div
-  class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-10 mt-12 border border-blue-100"
-  style="background: linear-gradient(135deg, #f0e7ff 0%, #e0f7fa 100%)"
+  class="max-w-4xl mx-auto rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 mt-12 border border-blue-100 bg-gradient-to-br from-purple-100 via-indigo-100 to-cyan-100"
 >
-  <ng-container *ngIf="pet && pet.id; else notFound">
+  <ng-container *ngIf="pet && pet.id">
     <section>
-      <h2 class="pet-details-container">Pet Details for {{ pet.name }}</h2>
+      <h2
+        class="text-2xl sm:text-3xl font-extrabold text-blue-700 mb-8 text-center flex flex-wrap items-center justify-center gap-3"
+      >
+        Pet Details for {{ pet.name }}
+      </h2>
 
       <article class="space-y-10">
         <!-- Pet Info -->
-        <div class="pet-info">
-          <div class="md:w-1/2 flex justify-center">
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <!-- Image -->
+          <div class="w-full md:w-1/2 flex justify-center">
             <img
-              src="https://place-puppy.com/puppy/y:240/x:240"
+              ngSrc="https://place-puppy.com/puppy/y:240/x:240"
               [alt]="pet.name || 'Pet image'"
-              class="pet-image"
+              fetchpriority="high"
+              priority
+              width="320"
+              height="320"
+              class="w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 object-cover rounded-lg border border-blue-200 shadow-sm"
             />
           </div>
-          <div class="pet-info-text">
-            <h3 class="text-2xl font-semibold text-gray-800">{{ pet.name }}</h3>
+
+          <!-- Text Info -->
+          <div
+            class="w-full md:w-1/2 flex flex-col gap-4 text-gray-700 text-center md:text-left"
+          >
+            <h3 class="text-xl sm:text-2xl font-semibold text-gray-800">
+              {{ pet.name }}
+            </h3>
             <p>
               <span class="font-medium text-blue-700">Category:</span>
               {{ pet.category?.name || 'N/A' }}
@@ -35,22 +49,26 @@
               </ng-container>
               <ng-template #noTags>N/A</ng-template>
             </p>
+
+            <!-- Description -->
+            <section class="mt-6">
+              <h4 class="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
+                Description
+              </h4>
+              <p class="text-gray-600">
+                {{ getRandomDescription() }}
+              </p>
+            </section>
           </div>
         </div>
-        <!--Description-->
-        <section class="mt-10">
-          <h3 class="text-xl font-semibold text-gray-800 mb-4">Description</h3>
-          <p class="text-gray-600">
-            {{ getRandomDescription() }}
-          </p>
-        </section>
+
         <!-- Adopt Button -->
         <div class="text-center">
           <button
             mat-raised-button
             color="primary"
             (click)="adoptPet()"
-            class="adopt-button"
+            class="bg-blue-600 text-white px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold rounded-full shadow-md hover:bg-blue-700 transition"
           >
             Adopt This Pet
           </button>
@@ -58,19 +76,4 @@
       </article>
     </section>
   </ng-container>
-
-  <!-- Not Found Template -->
-  <ng-template #notFound>
-    <div class="pet-not-found">
-      <h2 class="text-3xl font-bold text-gray-700 mb-2">Pet Not Found</h2>
-      <p class="text-gray-500">
-        Sorry, we couldn't find the pet you're looking for.
-      </p>
-      <a
-        routerLink="/"
-        class="mt-6 inline-block text-blue-600 hover:underline text-lg"
-        >Back to Home</a
-      >
-    </div>
-  </ng-template>
 </div>

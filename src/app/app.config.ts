@@ -1,39 +1,35 @@
 import {
- ApplicationConfig,
- importProvidersFrom,
- provideZoneChangeDetection,
+  ApplicationConfig,
+  importProvidersFrom,
+  provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import {
- provideTanStackQuery,
- QueryClient,
+  provideTanStackQuery,
+  QueryClient,
 } from '@tanstack/angular-query-experimental';
 import { routes } from './app.routes';
 import { ApiConfiguration } from '../api/api-configuration';
 import { FormlyModule } from '@ngx-formly/core';
 import { RepeatTypeComponent } from './Petstore/repeat-section.type';
 
-
 export const appConfig: ApplicationConfig = {
- providers: [
-   provideZoneChangeDetection({ eventCoalescing: true }),
-   provideRouter(routes),
-   provideHttpClient(),
-   importProvidersFrom(
-     FormlyModule.forRoot({
-       types: [{ name: 'repeat', component: RepeatTypeComponent }],
-     }),
-   ),
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideHttpClient(),
+    importProvidersFrom(
+      FormlyModule.forRoot({
+        types: [{ name: 'repeat', component: RepeatTypeComponent }],
+      })
+    ),
 
-
-   provideTanStackQuery(new QueryClient()),
-   {
-     provide: ApiConfiguration,
-     useValue: { rootUrl: 'https://petstore3.swagger.io/api/v3' },
-   },
- ],
+    provideTanStackQuery(new QueryClient()),
+    {
+      provide: ApiConfiguration,
+      useValue: { rootUrl: 'http://192.168.86.50:8080/api/v3' },
+      //useValue: { rootUrl: 'https://petstore3.swagger.io/api/v3' },
+    },
+  ],
 };
-
-
-

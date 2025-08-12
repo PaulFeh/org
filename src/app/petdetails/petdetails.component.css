@@ -1,20 +1,19 @@
-/* Pet Details Container */
-.pet-details-container {
-  max-width: 48rem; /* max-w-3xl */
+/* Pet Details Container .pet-details-container {
+  max-width: 48rem;
   margin: 4rem auto;
   background-color: #ffffff;
-  border-radius: 1rem; /* rounded-2xl */
+  border-radius: 1rem; 
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   padding: 2.5rem;
   border: 1px solid #dbeafe;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
 /* Title */
-.pet-details-container h2 {
-  font-size: 1.875rem; /* text-3xl */
+/* .pet-details-container h2 {
+  font-size: 1.875rem; 
   font-weight: 800;
   color: #1d4ed8;
   margin-bottom: 2rem;
@@ -22,10 +21,10 @@
   align-items: center;
   gap: 0.75rem;
   text-align: center;
-}
+} */
 
 /* Pet Info Flex Section */
-.pet-info {
+/* .pet-info {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,43 +38,43 @@
     align-items: flex-start;
     gap: 3rem;
   }
-}
+} */
 
 /* Pet Image */
-.pet-image {
+/* .pet-image {
   width: 20rem;
   height: 20rem;
   border-radius: 0.5rem;
   object-fit: cover;
-  border: 1px solid #bfdbfe; /* border-blue-200 */
+  border: 1px solid #bfdbfe;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
+} */
+/* 
 @media (max-width: 600px) {
   .pet-image {
     width: 120px;
     height: 120px;
     border-radius: 50%;
   }
-}
+} */
 
 /* Pet Info Text */
-.pet-info-text {
+/* .pet-info-text {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   color: #374151;
   font-size: 1rem;
   text-align: center;
-}
+} */
 
-.pet-info-text h3 {
-  font-size: 1.5rem; /* text-2xl */
+/* .pet-info-text h3 {
+  font-size: 1.5rem; 
   font-weight: 600;
   color: #1f2937;
-}
+} */
 
-.pet-info-text span {
+/* .pet-info-text span {
   font-weight: 500;
   color: #1d4ed8;
 }
@@ -89,30 +88,30 @@
   .pet-info-text {
     text-align: left;
   }
-}
+} */
 
 /* Adopt Button */
-.adopt-button {
+/* .adopt-button {
   background-color: #2563eb;
   color: white;
   padding: 0.75rem 2rem;
   font-size: 1.1rem;
   font-weight: 600;
-  border-radius: 9999px; /* fully rounded */
+  border-radius: 9999px; 
   border: none;
   cursor: pointer;
   margin-top: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
   align-self: center;
-}
+} */
 
-.adopt-button:hover {
+/* .adopt-button:hover {
   background-color: #1e40af;
-}
+} */
 
 /* Not Found */
-.pet-not-found {
+/* .pet-not-found {
   text-align: center;
   padding: 4rem 0;
   color: #6b7280;
@@ -145,10 +144,10 @@
 
 .pet-not-found a:hover {
   text-decoration: underline;
-}
+} */
 
 /* General Responsive Container Utilities */
-.max-w-3xl {
+/* .max-w-3xl {
   max-width: 48rem;
 }
 .mx-auto {
@@ -175,15 +174,15 @@
 }
 .border-blue-100 {
   border-color: #c7d2fe;
-}
+} */
 
 /* Section margin */
-section.mt-10 {
+/* section.mt-10 {
   margin-top: 2.5rem;
-}
+} */
 
 /* Text Utility */
-.text-gray-600 {
+/* .text-gray-600 {
   color: #4b5563;
 }
 .text-gray-700 {
@@ -230,10 +229,10 @@ section.mt-10 {
 }
 .mt-10 {
   margin-top: 2.5rem;
-}
+} */
 
 /* Mobile padding adjustments */
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .p-10 {
     padding: 1rem;
   }
@@ -243,4 +242,4 @@ section.mt-10 {
   .pet-info-text h3 {
     font-size: 1.25rem;
   }
-}
+} */
